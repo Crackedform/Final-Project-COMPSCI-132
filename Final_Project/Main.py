@@ -10,13 +10,19 @@ def get_guess(max_num):
 
 def main():
     mode = input("Input your difficulty 'E' for easy, 'M' for medium, 'H' for hard: ")
-    
+    if mode == "E":
+        max_attempts = 9
+        max_num = 100
+    if mode == "M":
+        max_attempts = 8
+        max_num = 200
+    if mode == "H":
+        max_attempts = 7
+        max_num = 500
     attempts = 0
-    max_attempts = 7
-    max_num = 100
-    number = random.randint(1,max_num)
     guess = -1
-    while guess != number and attempts > 7:
+    number = random.randint(1,max_num)
+    while guess != number or attempts > max_attempts:
         attempts += 1
         guess = get_guess(max_num)
         if (guess == -1):
