@@ -9,6 +9,7 @@ def get_guess(max_num):
     return -1
 
 def main():
+    guessed = []
     mode = input("Input your difficulty 'E' for easy, 'M' for medium, 'H' for hard: ")
     if mode == "E":
         max_attempts = 9
@@ -22,14 +23,15 @@ def main():
     attempts = 0
     guess = -1
     number = random.randint(1,max_num)
-    while guess != number or attempts > max_attempts:
+    while guess != number or attempts < max_attempts:
         attempts += 1
         guess = get_guess(max_num)
         if (guess == -1):
             print("Not a valid guess")
             attempts -= 1
         elif(guess > number):
-            print("Too High")   
+            print("Too High")
+            guessed.append(guess)
         elif(guess < number):
             print("Too Low")
     if attempts > max_attempts:
