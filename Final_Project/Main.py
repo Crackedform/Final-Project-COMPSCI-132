@@ -9,36 +9,42 @@ def get_guess(max_num):
     return -1
 def main():
     guessed = []
-    mode = input("Input your difficulty 'E' for easy, 'M' for medium, 'H' for hard: ")
+    cont = True
+    while cont:
+        mode = input("Input your difficulty 'E' for easy, 'M' for medium, 'H' for hard: ")
+        if mode in ["E","M","H"]:
+            cont = False
     if mode == "E":
         max_attempts = 9
         max_num = 100
-    if mode == "M":
+    elif mode == "M":
         max_attempts = 8
         max_num = 200
-    if mode == "H":
+    elif mode == "H":
         max_attempts = 7
         max_num = 500
+    else:
+        return -1
     attempts = 0
     guess = -1
     number = random.randint(1,max_num)
-    while guess != number or attempts < max_attempts:
-        attempts += 1
+    while guess != number and attempts < max_attempts:
         guess = get_guess(max_num)
         if guess in guessed:
             print("Already guessed!")
+        elif (guess == -1):
+            print("Not a valid guess")
         else:
-            if (guess == -1):
-                print("Not a valid guess")
-                guessed.append(guess)
-            elif(guess > number):
+            if(guess > number):
                 print("Too High")
+                attempts += 1
                 guessed.append(guess)
             elif(guess < number):
                 print("Too Low")
                 guessed.append(guess)
-    if attempts > max_attempts:
-        print("Ran out of guesses")
+                attempts += 1
+    if guess != number:
+        print(f"Ran out of guesses! The number was {number}")
     else:
         print(f"Congratulations! You guessed {number} correctly in {attempts} attempts")
 if __name__ == "__main__":
