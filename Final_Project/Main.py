@@ -3,7 +3,7 @@ def get_guess(max_num):
     guess = input(f"Please input a number between 1 and {max_num} (No Spaces, decimals, or commas): ")
     if guess != "":
         for char in guess:
-            if not (48 <= ord(char) <= 57):
+            if not (48 <= ord(char) <= 57): #If input is a number between 0-9
                 return -1
         return int(guess)
     return -1
