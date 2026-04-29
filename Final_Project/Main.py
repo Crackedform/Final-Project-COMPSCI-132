@@ -52,5 +52,8 @@ def main():
         print(f"Ran out of guesses! The number was {number}")
     else:
         print(f"Congratulations! You guessed {number} correctly in {attempts + 1} attempts")
+    pl_ag = input("Input y to play again, input any other key to end: ")
+    if pl_ag == "y" or pl_ag == "Y":
+        main()
 if __name__ == "__main__":
     main()
